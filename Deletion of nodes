@@ -1,0 +1,102 @@
+//Deleting nodes from the linked list
+
+
+
+//removing from the beginning of the linked list
+
+Node* remove_begining(Node* start){
+    if(start == nullptr) {
+        cout<<"Underflow"<<endl; 
+        return start;
+    }
+
+    Node* temp = start;
+    start = start->next;
+    delete temp;
+    return start;
+}
+
+
+
+//deleting from the end of the linked list
+
+Node* delete_end(Node* start){
+    if(start == nullptr || start->next == nullptr){
+        cout<<"Empty";
+        return nullptr;
+    }
+    Node* temp = start;
+    while(temp->next->next == nullptr){
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next = nullptr;
+    Node* ptr1 = start;
+    while(ptr1){
+        cout<<ptr1->data<<endl;
+        ptr1=ptr1->next;
+    }
+   
+}
+
+
+//deleting the kth element from the linked list
+
+Node* delete_k(Node* start, int k){
+    if(start == nullptr){
+        cout<<"Empty list";
+        return start;
+    }
+    if (k == 1){
+        Node* temp = start;
+        start = start->next;
+        delete temp;
+        cout<<start->data<<endl;
+        return start;
+    }
+    int cnt = 0;
+    Node* temp = start;
+    Node* prev = nullptr;
+    while(temp != nullptr){
+        cnt++;
+        if(cnt == k){
+            prev->next = prev->next->next;
+            delete temp;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+
+}
+
+
+//deleting by using value from the linked list
+
+Node* delete_val(Node* start, int k){
+    if(start == nullptr){
+        cout<<"Empty list";
+        return start;
+    }
+    if (start->data == k){
+        Node* temp = start;
+        start = start->next;
+        delete temp;
+        cout<<start->data<<endl;
+        return start;
+    }
+   
+    Node* temp = start;
+    Node* prev = nullptr;
+    while(temp != nullptr){
+    
+        if(temp->data == k){
+            prev->next = prev->next->next;
+            delete temp;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+
+}
