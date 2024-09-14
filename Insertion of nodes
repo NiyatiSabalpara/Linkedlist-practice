@@ -1,0 +1,80 @@
+//Inserting nodes in  a linked list
+
+//Insertion from the start
+
+Node* insert_start(Node* start, int val){
+    Node* temp = new Node(val, start);
+    return temp;
+}
+
+
+//Insertion from the end of the linked list
+
+Node* insert_end(Node*start, int val){
+    
+    if (start == nullptr){
+        return new Node(val);
+    }
+    Node* temp = start;
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+    Node* nn = new Node(val);
+    temp->next = nn;
+    return start;
+}
+
+
+//Insetion in the kth value of the linked list
+
+Node* insert_k(Node* start, int val, int k){
+    if (start == nullptr){
+        if (k == 1){
+            return new Node(val);
+        }
+        else{
+            cout<<"Empty linked list"<<endl;
+            return NULL;
+        }   
+    }
+    if (k == 1){
+        return new Node(val, start);
+    }
+    int cnt = 0;
+    Node* temp = start;
+    while(temp != nullptr){
+        cnt++;
+        if (cnt == k-1){
+            Node* nn = new Node(val, temp->next);
+            temp->next = nn;
+            break;
+        }
+        temp = temp->next;
+    }
+    return start;
+}
+
+
+//Insertion before a given value of the linked list
+
+Node* insert_beforeval(Node* start, int ele, int val){
+    if (start == nullptr){
+        
+            cout<<"Empty linked list"<<endl;
+            return NULL;
+        }   
+    
+    if (start->data == val){
+        return new Node(ele, start);
+    }
+    Node* temp = start;
+    while(temp->next != NULL){
+        if (temp->next->data == val){
+            Node* nn = new Node(ele, temp->next);
+            temp->next = nn;
+            break;
+        }
+        temp = temp->next;
+    }
+    return start;
+}
